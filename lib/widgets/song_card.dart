@@ -57,11 +57,11 @@ class SongCard extends StatelessWidget {
                           color: Colors.deepPurple,
                           fontWeight: FontWeight.bold
                         ) ,),
-                      Text(song.description,
-                        style:Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: Colors.white ,
-                          fontWeight: FontWeight.bold
-                        ) ,),
+                      // Text(song.description,
+                      //   style:Theme.of(context).textTheme.bodySmall!.copyWith(
+                      //     color: Colors.white ,
+                      //     fontWeight: FontWeight.bold
+                      //   ) ,),
                     ],
                   ),
                   Icon(Icons.play_circle, color: Colors.deepPurple,)

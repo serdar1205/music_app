@@ -62,7 +62,7 @@ class _PlaylistSongs extends StatelessWidget {
                     fontWeight: FontWeight.bold
                 )
             ),
-            subtitle: Text('${playlist.songs[index].description} - 02:45',),
+            subtitle: Text('${playlist.songs[index].title} - 02:45',),
             trailing: Icon(Icons.more_vert, color: Colors.white,),
 
           );

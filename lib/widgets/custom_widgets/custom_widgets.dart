@@ -23,7 +23,7 @@ class CustomNavBar extends StatelessWidget {
   }
 }
 
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget{
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
   const CustomAppBar({Key? key}) : super(key: key);
 
   @override

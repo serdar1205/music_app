@@ -22,11 +22,24 @@ class _SongScreenState extends State<SongScreen> {
   @override
   void initState(){
     super.initState();
+    //setSourceAndPlay();
     audioPlayer.setAudioSource(ConcatenatingAudioSource(
         children: [
-          AudioSource.uri(Uri.parse('assets:///${song.url}'))
+          AudioSource.uri(Uri.parse('asset:${song.url}'),)
         ]));
   }
+
+  // setSourceAndPlay()async{
+  //   try{
+  //    await audioPlayer.setAudioSource(ConcatenatingAudioSource(
+  //         children: [
+  //           AudioSource.uri(Uri.parse('asset:${song.url}'),)
+  //         ]));
+  //    audioPlayer.play();
+  //   }catch(e){
+  //     print(e);
+  //   }
+  // }
 
   @override
   void dispose(){
@@ -53,6 +66,7 @@ class _SongScreenState extends State<SongScreen> {
         children: [
           Image.asset(song.coverUrl, fit: BoxFit.cover,),
           _BackgroundFilter(),
+
           _MusicPlayer(
             song:song,
             audioPlayer: audioPlayer,
@@ -80,29 +94,29 @@ class _MusicPlayer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(song.title,
+          Text('song.title',
             style:Theme.of(context).textTheme.headlineSmall!.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.bold
             ) ,),
           SizedBox(height: 10,),
-          Text(song.description,
-            maxLines: 2,
-            style:Theme.of(context).textTheme.bodySmall!.copyWith(
-                color: Colors.white ,
-            ) ,),
+
           SizedBox(height: 30,),
 
-          StreamBuilder<SeekBarData>(
-              stream: seekBarDataStream,
-              builder:(context, snapshot){
-                final positonData = snapshot.data;
-                return SeekBar(
-                  position: positonData?.duration ?? Duration.zero,
-                  duration:positonData?.duration ?? Duration.zero,
-                  onChangeEnd: audioPlayer.seek,
-                );
-              }
+          Container(
+            height: 100,
+
+            child: StreamBuilder<SeekBarData>(
+                stream: seekBarDataStream,
+                builder:(context, snapshot){
+                  final positonData = snapshot.data;
+                  return SeekBar(
+                    position: positonData?.duration ?? Duration.zero,
+                    duration:positonData?.duration ?? Duration.zero,
+                    onChangeEnd: audioPlayer.seek,
+                  );
+                }
+            ),
           ),
          PlayerButtons(audioPlayer: audioPlayer),
           Row(
